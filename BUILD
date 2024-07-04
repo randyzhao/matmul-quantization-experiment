@@ -2,21 +2,22 @@ load("@rules_cc//cc:defs.bzl", "cc_library", "cc_binary", "cc_test")
 
 
 cc_library(
-  name = "float_attention_lib",
-  srcs = ["float_attention.cc"],
-  hdrs = ["float_attention.hpp"],
+  name = "run_fp32_lib",
+  srcs = ["run_fp32.cc"],
+  hdrs = ["run_fp32.h"],
 )
 
 cc_binary(
-  name = "float_attention",
-  srcs = ["float_attention"],
+  name = "run_fp32",
+  srcs = ["run_fp32.cc"],
+  deps = [":run_fp32_lib"]
 )
 
 cc_test(
-  name = "float_attention_test",
-  srcs = ["float_attention_test.cc"],
+  name = "run_fp32_test",
+  srcs = ["run_fp32_test.cc"],
   deps = [
-    ":float_attention_lib",
+    ":run_fp32_lib",
     "@com_google_googletest//:gtest_main",
   ],
 )

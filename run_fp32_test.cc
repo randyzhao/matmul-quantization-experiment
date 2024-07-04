@@ -1,4 +1,4 @@
-#include "float_attention.hpp"
+#include "run_fp32.h"
 #include <gtest/gtest.h>
 #include <vector>
 
@@ -17,7 +17,7 @@ TEST(MatmulTest, BasicTest) {
   int n = 2;
   std::vector<float> out(d * (x.size() / n), 0);
 
-  matmul(out, w, x, d, n);
+  FP32::matmul(out, w, x, d, n);
 
   std::vector<float> expected = {
     5, 11, 17,
