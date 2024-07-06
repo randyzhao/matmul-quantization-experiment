@@ -8,9 +8,11 @@ cc_library(
 )
 
 cc_binary(
-  name = "run_fp32",
-  srcs = ["run_fp32.cc"],
-  deps = [":run_fp32_lib"]
+  name = "experiment",
+  srcs = ["experiment.cc"],
+  deps = [
+    ":run_fp32_lib",
+  ],
 )
 
 cc_test(

@@ -23,6 +23,6 @@ void matmul(
 
 void relu(std::vector<float>& out, std::vector<float>& in);
 
-void forward(ForwardState& state, Weights& weights, std::vector<float>& in, int d, int n);
+void forward(std::vector<float>& out, Weights& weights, std::vector<float>& in, int n);
 
 }

@@ -32,15 +32,15 @@ void relu(std::vector<float>& out, std::vector<float>& in) {
   }
 }
 
-void forward(ForwardState& state, Weights& weights, std::vector<float>& in, int d, int n) {
-  for (int i = 0; i < 3; ++i) {
-    matmul(state.logits, weights.w1, i == 0 ? in : state.activation, d, n);
-    relu(state.activation, state.logits);
+void forward(std::vector<float>& out, Weights& weights, std::vector<float>& in, int n) {
+  ForwardState state;
+
+  const int layers = 3;
+
+  for (int i = 0; i < layers; ++i) {
+    matmul(state.logits, weights.w1, i == 0 ? in : state.activation, n, n);
+    relu(i == layers - 1 ? out : state.activation, state.logits);
   }
 }
 
-}
-
-int main() {
-  return 0;
 }
