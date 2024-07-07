@@ -1,6 +1,7 @@
 #include <cstdint>
 #include <vector>
 #include <algorithm>
+#include <iostream>
 
 #include "run_int8.h"
 
@@ -11,7 +12,7 @@ QuantizedTensor quantize(std::vector<float>& data) {
     [](float a, float b) {
       return std::abs(a) < std::abs(b);
     });
-  float scaler = std::abs(*maxAbsElement);
+  float scaler = std::abs(*maxAbsElement) / 127.0f;
   std::vector<int8_t> quantizedData(data.size());
 
   std::transform(data.begin(), data.end(), quantizedData.begin(),
@@ -52,6 +53,9 @@ void relu(std::vector<float>& out, const QuantizedTensor& in) {
 void forward(std::vector<float>& out, Weights& weights, std::vector<float>& in, int n) {
   int T = in.size() / n;
 
+  std::cout << "here" << std::endl;
+
+
   QuantizedTensor qin = quantize(in),
     qw1 = quantize(weights.w1),
     qw2 = quantize(weights.w2),
@@ -61,6 +65,8 @@ void forward(std::vector<float>& out, Weights& weights, std::vector<float>& in, 
   std::vector<float> activation(T * n);
 
   // three layers of matmul + relu
+
+  std::cout << "here" << std::endl;
 
   matmul(logits, qw1, qin, n, n);
   relu(activation, quantize(logits));
