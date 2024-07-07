@@ -41,3 +41,12 @@ cc_test(
     "@com_google_googletest//:gtest_main",
   ],
 )
+
+cc_test(
+  name = "run_int8_test",
+  srcs = ["run_int8_test.cc"],
+  deps = [
+    ":run_int8_lib",
+    "@com_google_googletest//:gtest_main",
+  ]
+)
