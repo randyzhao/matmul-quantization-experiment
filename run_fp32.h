@@ -2,15 +2,13 @@
 
 #include <vector>
 
+#include "common.h"
+
 namespace FP32 {
 
 struct ForwardState {
   std::vector<float> logits;
   std::vector<float> activation;
-};
-
-struct Weights {
-  std::vector<float> w1, w2;
 };
 
 void matmul(

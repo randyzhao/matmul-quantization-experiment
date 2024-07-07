@@ -3,7 +3,9 @@
 #include <random>
 #include <ctime>
 
+#include "common.h"
 #include "run_fp32.h"
+#include "run_int8.h"
 
 std::vector<float> randomGenerateFP32(int size, float stddev=0.5) {
   // Initialize the random number generator with a random seed
@@ -27,11 +29,12 @@ int main() {
   int n = 32;
 
   std::vector<float> in = randomGenerateFP32(T * n);
-  FP32::Weights wei;
+  Weights wei;
   wei.w1 = randomGenerateFP32(n * n);
   wei.w2 = randomGenerateFP32(n * n);
 
-  std::vector<float> out(T * n);
+  std::vector<float> outFP32(T * n), outINT8(T * n);
 
-  FP32::forward(out, wei, in, n);
+  // FP32::forward(outFP32, wei, in, n);
+  // INT8::forward(outINT8, wei, in, n);
 }

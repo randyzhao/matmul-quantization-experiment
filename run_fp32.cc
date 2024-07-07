@@ -19,7 +19,7 @@ void matmul(
     for (int i = 0; i < d; ++i) {
       float result = 0;
       for (int j = 0; j < n; ++j) {
-        result += w[i * n + j] * x[i];
+        result += w[i * n + j] * x[t * n + j];
       }
       out[t * d + i] = result;
     }
