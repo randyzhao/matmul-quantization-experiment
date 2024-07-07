@@ -2,26 +2,28 @@
 #include <gtest/gtest.h>
 #include <vector>
 
+#include <iostream>
+
 // Test case for matmul function
 TEST(MatmulTest, BasicTest) {
   std::vector<float> w = {
-    1, 2,
-    3, 4,
-    5, 6
+    1, 6, 0, 7,
+    6, 4, 2, 8,
+    4, 0, 3, 5
   };
   std::vector<float> x = {
-    1, 2,
-    3, 4
+    1, 3, 4, 0,
+    6, 1, 5, 9
   };
   int d = 3;
-  int n = 2;
+  int n = 4;
   std::vector<float> out(d * (x.size() / n), 0);
 
   FP32::matmul(out, w, x, d, n);
 
   std::vector<float> expected = {
-    5, 11, 17,
-    11, 25, 39
+    19, 26, 16,
+    75, 122, 84
   };
 
   ASSERT_EQ(out.size(), expected.size());
