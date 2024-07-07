@@ -53,9 +53,6 @@ void relu(std::vector<float>& out, const QuantizedTensor& in) {
 void forward(std::vector<float>& out, Weights& weights, std::vector<float>& in, int n) {
   int T = in.size() / n;
 
-  std::cout << "here" << std::endl;
-
-
   QuantizedTensor qin = quantize(in),
     qw1 = quantize(weights.w1),
     qw2 = quantize(weights.w2),
@@ -65,8 +62,6 @@ void forward(std::vector<float>& out, Weights& weights, std::vector<float>& in, 
   std::vector<float> activation(T * n);
 
   // three layers of matmul + relu
-
-  std::cout << "here" << std::endl;
 
   matmul(logits, qw1, qin, n, n);
   relu(activation, quantize(logits));

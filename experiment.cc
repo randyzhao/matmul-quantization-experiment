@@ -30,11 +30,12 @@ int main() {
 
   std::vector<float> in = randomGenerateFP32(T * n);
   Weights wei;
-  wei.w1 = randomGenerateFP32(n * n);
-  wei.w2 = randomGenerateFP32(n * n);
+  wei.w1 = randomGenerateFP32(n * n, 0.1);
+  wei.w2 = randomGenerateFP32(n * n, 0.3);
+  wei.w3 = randomGenerateFP32(n * n, 0.5);
 
   std::vector<float> outFP32(T * n), outINT8(T * n);
 
-  // FP32::forward(outFP32, wei, in, n);
-  // INT8::forward(outINT8, wei, in, n);
+  FP32::forward(outFP32, wei, in, n);
+  INT8::forward(outINT8, wei, in, n);
 }
