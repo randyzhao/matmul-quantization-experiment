@@ -2,6 +2,7 @@
 #include <random>
 #include <random>
 #include <ctime>
+#include <iostream>
 
 #include "common.h"
 #include "run_fp32.h"
@@ -24,6 +25,15 @@ std::vector<float> randomGenerateFP32(int size, float stddev=0.5) {
   return out;
 }
 
+void outputTopLeft(std::vector<float> data, int outputSize, int n) {
+  for (int i = 0; i < outputSize; ++i) {
+    for (int j = 0; j < outputSize; ++j) {
+      std::cout << data[i * n + j] << " ";
+    }
+    std::cout << std::endl;
+  }
+}
+
 int main() {
   int T = 128;
   int n = 32;
@@ -38,4 +48,10 @@ int main() {
 
   FP32::forward(outFP32, wei, in, n);
   INT8::forward(outINT8, wei, in, n);
+
+  std::cout << "fp32 result: " << std::endl;
+  outputTopLeft(outFP32, 10, n);
+
+  std::cout << "int8 result: " << std::endl;
+  outputTopLeft(outINT8, 10, n);
 }
