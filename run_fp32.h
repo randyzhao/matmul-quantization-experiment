@@ -9,6 +9,11 @@ namespace FP32 {
 struct ForwardState {
   std::vector<float> logits;
   std::vector<float> activation;
+
+  ForwardState(int outputSize) {
+    logits = std::vector<float>(outputSize);
+    activation = std::vector<float>(outputSize);
+  }
 };
 
 void matmul(

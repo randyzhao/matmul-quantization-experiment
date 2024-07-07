@@ -33,7 +33,7 @@ void relu(std::vector<float>& out, std::vector<float>& in) {
 }
 
 void forward(std::vector<float>& out, Weights& weights, std::vector<float>& in, int n) {
-  ForwardState state;
+  ForwardState state(in.size());
 
   const int layers = 3;
 
