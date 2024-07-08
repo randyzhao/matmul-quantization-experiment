@@ -38,7 +38,7 @@ void matmul(
       int32_t acc = 0;
       for (int j = 0; j < n; ++j) {
         acc += static_cast<int32_t>(x.data[t * n + j]) *
-               static_cast<int32_t>(w.data[d * n + j]);
+               static_cast<int32_t>(w.data[i * n + j]);
       }
       out[t * d + i] = static_cast<float>(acc) * x.scaler * w.scaler;
     }
